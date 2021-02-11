@@ -1,6 +1,9 @@
 FROM golang:latest
 
-RUN go get github.com/labstack/echo/...
+RUN mkdir /go/src/work
 
-WORKDIR /app
-ADD . /app
+WORKDIR /go/src/work
+
+ADD . /go/src/work
+
+RUN go get -u github.com/labstack/echo
