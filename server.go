@@ -20,7 +20,7 @@ func main() {
 func login(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("method:", r.Method) //リクエストを取得するメソッド
 	if r.Method == "GET" {
-		t, _ := template.ParseFiles("login.gtpl")
+		t, _ := template.ParseFiles("html/login.gtpl")
 		t.Execute(w, nil)
 	} else {
 		//ログインデータがリクエストされ、ログインのロジック判断が実行されます。
