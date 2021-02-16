@@ -1,21 +1,32 @@
 package main
-
+ 
 import (
 	"log"
 	"net/http"
 )
  
-func viewHandler(writer http.ResponseWriter, request *http.Request) {
-	message := []byte("Hello World!")
-	// Add message to the response
-	_, err := writer.Write(message)
+func write(writer http.ResponseWriter, message string) {
+	_, err := writer.Write([]byte(message))
 	if err != nil {
 		log.Fatal(err)
 	}
 }
  
+func one(writer http.ResponseWriter, request *http.Request) {
+	write(writer, "One")
+}
+ 
+func two(writer http.ResponseWriter, request *http.Request) {
+	write(writer, "Two")
+}
+ 
+func three(writer http.ResponseWriter, request *http.Request) {
+	write(writer, "Three")
+}
+ 
 func main() {
-	// register hander
-	http.HandleFunc("/hello", viewHandler)
+	http.HandleFunc("/one", one)
+	http.HandleFunc("/two", two)
+	http.HandleFunc("/three", three)
 	log.Fatal(http.ListenAndServe("localhost:8080", nil))
 }
